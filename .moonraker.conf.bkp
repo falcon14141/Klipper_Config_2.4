@@ -1,0 +1,76 @@
+[server]
+host = 0.0.0.0
+port = 7125
+enable_debug_logging = False
+klippy_uds_address = /tmp/klippy_uds
+
+[database]
+database_path = /home/pi/.moonraker_database
+
+[authorization]
+trusted_clients = 
+	10.0.0.0/8
+	127.0.0.0/8
+	169.254.0.0/16
+	172.16.0.0/12
+	192.168.0.0/16
+	FE80::/10
+	::1/128
+cors_domains = 
+	*.kutschera.fr
+	*.lan
+	*.local
+	*://my.mainsail.xyz
+	*://app.fluidd.xyz
+force_logins = False
+
+[file_manager]
+config_path = /home/pi/klipper_config
+log_path = /home/pi/klipper_logs
+enable_object_processing = True
+
+[history]
+
+[update_manager]
+channel = dev
+
+[update_manager mainsail]
+type = web
+channel = beta
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+refresh_interval = 24
+
+[update_manager fluidd]
+type = web
+channel = beta
+repo = fluidd-core/fluidd
+path = ~/fluidd
+refresh_interval = 24
+
+[update_manager KlipperScreen]
+type = git_repo
+path = /home/pi/KlipperScreen
+origin = https://github.com/jordanruthe/KlipperScreen.git
+env = /home/pi/.KlipperScreen-env/bin/python
+requirements = scripts/KlipperScreen-requirements.txt
+install_script = scripts/KlipperScreen-install.sh
+
+[update_manager kiauh]
+type = git_repo
+path = ~/kiauh
+origin = https://github.com/th33xitus/kiauh.git
+is_system_service = False
+
+[update_manager client z_calibration]
+type = git_repo
+path = ~/klipper_z_calibration
+origin = https://github.com/protoloft/klipper_z_calibration.git
+install_script = install.sh
+managed_services = klipper
+
+[update_manager webcamd]
+type = git_repo
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+
